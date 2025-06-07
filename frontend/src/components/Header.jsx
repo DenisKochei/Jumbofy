@@ -1,13 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import { Logo } from "./Logo";
-import { FaSun, FaOpencart } from "react-icons/fa";
+import { FaSun, FaOpencart, FaMoon } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { RiMenu4Line } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../../redux/Theme";
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dispatch = useDispatch();
+  const { theme } = useSelector((state => state.theme))
 
   const handleLinkClick = () => setOpen(false);
 
@@ -75,14 +79,14 @@ export function Header() {
 
       </div>
       <div className="flex justify-between items-center gap-4">
-        <button className="rounded-full border border-slate-500 p-1.5">
-          <FaSun />
+        <button onClick={()=>dispatch(toggleTheme())} className="rounded-full border border-slate-500 p-1.5">
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
         </button>
         <button className="flex justify-center items-center text-lg">
           <FaOpencart />
         </button>
         <Link to="/sign-in">
-          <button className="py-1 px-3 hidden  md:flex justify-center items-center border border-slate-500 rounded-lg">
+          <button onClick={()=>setOpen(false)} className="py-1 px-3 hidden  md:flex justify-center items-center border border-slate-500 rounded-lg">
             Sign in
           </button>
         </Link>

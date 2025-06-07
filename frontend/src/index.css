@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-white dark:bg-[#060a12];
+}
+
+body{
+  height: 100vh;
+  font-size:0.8rem;
+}
+body p{
+  font-size: 0.8rem;
+}
+body h1{
+  font-size: 0.8rem;
+}
+body h2{
+  font-size: 0.8rem;
+}
+body span{
+  font-size: 0.8rem;
+}
+
 html {
   scroll-behavior: smooth;
 }
